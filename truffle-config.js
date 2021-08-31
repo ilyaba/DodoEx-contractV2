@@ -64,7 +64,8 @@ module.exports = {
     MYSTERYBOX_V1:  false,
     Drops_V2:       false,
     MineV3:         false,
-    NFT_POOL:       false
+    NFT_POOL:       false,
+    test_Adapter:   true,
   },
 
   networks: {
