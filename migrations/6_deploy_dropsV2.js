@@ -65,7 +65,7 @@ module.exports = async (deployer, network, accounts) => {
         logger.log("Deploy time: " + new Date().toLocaleString());
         logger.log("Deploy type: Drops_V2");
 
-        if (DropsFeeModelAddress == "") {
+        if (DropsFeeModelAddress == undefined || DropsFeeModelAddress == "") {
             await deployer.deploy(DropsFeeModel);
             DropsFeeModelAddress = DropsFeeModel.address;
             logger.log("DropsFeeModelAddress: ", DropsFeeModelAddress);
@@ -75,7 +75,7 @@ module.exports = async (deployer, network, accounts) => {
         }
 
         if (!isReveal) {
-            if (RandomGeneratorAddress == "") {
+            if (RandomGeneratorAddress == undefined || RandomGeneratorAddress == "") {
                 await deployer.deploy(RandomGenerator, RandomPool);
                 RandomGeneratorAddress = RandomGenerator.address;
                 logger.log("RandomGeneratorAddress: ", RandomGeneratorAddress);
@@ -103,7 +103,7 @@ module.exports = async (deployer, network, accounts) => {
             nftContractAddress = DropsERC721Address;
         }
 
-        if (DropsProxyAddress == "") {
+        if (DropsProxyAddress == undefined || DropsProxyAddress == "") {
             await deployer.deploy(
                 DODODropsProxy,
                 DODOApproveProxyAddress
@@ -125,6 +125,8 @@ module.exports = async (deployer, network, accounts) => {
             RandomGeneratorAddress,
             nftContractAddress
         ]
+
+        logger.log("addrList:", addrList);
 
         const DODODropsInstance = await DODODrops.at(DODODropsAddress);
         var tx = await DODODropsInstance.init(

@@ -55,6 +55,8 @@ exports.GetConfig = function (network, accounts) {
             CONFIG.multiSigAddress = accounts[0]
             CONFIG.defaultMaintainer = accounts[0]
             break;
+        default:
+            CONFIG = ETH_CONFIG
     }
     return CONFIG
 }
